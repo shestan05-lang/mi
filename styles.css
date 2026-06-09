@@ -1,0 +1,646 @@
+/* =================================================================
+   Быстрые цифровые решения для малого бизнеса
+   Стили сайта-портфолио
+   -----------------------------------------------------------------
+   Палитра:
+     - Светлый фон, тёмный текст, один яркий акцент (синий)
+   Чтобы сменить акцентный цвет, поменяйте --accent ниже.
+   ================================================================= */
+
+/* ---- Дизайн-токены (переменные) -------------------------------- */
+:root {
+  --bg:            #fafafa;   /* основной фон */
+  --bg-alt:        #f1f3f6;   /* фон чередующихся секций */
+  --surface:       #ffffff;   /* карточки */
+  --text:          #09090b;   /* основной текст */
+  --text-soft:     #52525b;   /* приглушённый текст */
+  --border:        #e4e4e7;   /* границы */
+
+  --accent:        #2563eb;   /* яркий акцент (кнопки, ссылки) */
+  --accent-hover:  #1d4ed8;   /* акцент при наведении */
+  --accent-soft:   #eaf1ff;   /* светлая подложка акцента */
+
+  --radius:        16px;      /* скругление карточек */
+  --radius-sm:     10px;      /* скругление кнопок */
+  --shadow:        0 4px 16px rgba(15, 23, 42, .06);
+  --shadow-lg:     0 14px 40px rgba(15, 23, 42, .12);
+
+  --maxw:          1120px;    /* максимальная ширина контента */
+  --ease:          200ms cubic-bezier(.4, 0, .2, 1);
+
+  --font-head:     'Poppins', system-ui, sans-serif;
+  --font-body:     'Open Sans', system-ui, sans-serif;
+}
+
+/* ---- Базовый сброс --------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.2;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+/* Контейнер по центру с боковыми отступами */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Акцентный цвет в тексте */
+.accent-text { color: var(--accent); }
+
+/* SVG-иконки (общие) */
+.ico,
+.ico-lg,
+.card-ico svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =================================================================
+   КНОПКИ
+   ================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--ease), color var(--ease),
+              border-color var(--ease), transform var(--ease),
+              box-shadow var(--ease);
+  white-space: nowrap;
+}
+
+.btn:active { transform: translateY(1px); }
+
+/* Размеры */
+.btn-sm { padding: 9px 16px;  font-size: 14px; }
+.btn-lg { padding: 15px 28px; font-size: 17px; }
+
+/* Акцентная кнопка */
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, .28);
+}
+.btn-accent:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, .35);
+}
+
+/* Прозрачная кнопка с обводкой */
+.btn-ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Доступный фокус для клавиатуры */
+.btn:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, .45);
+  outline-offset: 2px;
+}
+
+/* =================================================================
+   ШАПКА
+   ================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 250, 250, .85);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  gap: 16px;
+}
+
+.logo {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.nav {
+  display: flex;
+  gap: 26px;
+  margin-left: auto;
+}
+.nav a {
+  font-size: 15px;
+  color: var(--text-soft);
+  transition: color var(--ease);
+}
+.nav a:hover { color: var(--accent); }
+
+.header-cta { margin-left: 8px; }
+
+/* =================================================================
+   HERO
+   ================================================================= */
+.hero {
+  padding: 72px 0 60px;
+  background:
+    radial-gradient(60% 60% at 80% 0%, var(--accent-soft) 0%, transparent 60%),
+    var(--bg);
+}
+
+.hero-inner {
+  max-width: 820px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  margin-bottom: 22px;
+}
+
+.hero-title {
+  font-size: clamp(30px, 6vw, 50px);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2.4vw, 20px);
+  color: var(--text-soft);
+  max-width: 640px;
+  margin: 0 auto 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 34px;
+}
+
+.hero-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: var(--text-soft);
+  font-size: 15px;
+}
+.hero-points li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-points .ico {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  flex: none;
+}
+
+/* =================================================================
+   СЕКЦИИ (общее)
+   ================================================================= */
+.section { padding: 76px 0; }
+.section-alt { background: var(--bg-alt); }
+
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 46px;
+}
+.section-title {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -.3px;
+  margin-bottom: 12px;
+}
+.section-lead {
+  color: var(--text-soft);
+  font-size: 17px;
+}
+
+/* Сетки */
+.grid { display: grid; gap: 22px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* =================================================================
+   КАРТОЧКИ (базовый стиль)
+   ================================================================= */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: transform var(--ease), box-shadow var(--ease),
+              border-color var(--ease);
+}
+
+/* Карточки услуг и доверия — приятный hover */
+.service-card:hover,
+.trust-card:hover,
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #d8dbe0;
+}
+
+/* Иконка в карточке услуги */
+.card-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.card-ico svg { width: 24px; height: 24px; }
+
+.service-card h3,
+.trust-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.service-card p,
+.trust-card p {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* Иконка-галочка в блоке доверия */
+.trust-card .ico-lg {
+  width: 30px;
+  height: 30px;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+/* =================================================================
+   ЦЕНЫ
+   ================================================================= */
+.price-card { position: relative; }
+.price-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.price {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.price span { color: var(--accent); }
+.price small {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+.price-desc {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* Выделенная карточка цены */
+.price-card-featured {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, .14);
+}
+.price-tag {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.pricing-note {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+/* =================================================================
+   ПРИМЕРЫ (КЕЙСЫ)
+   ================================================================= */
+.case-card {
+  padding: 0;
+  overflow: hidden;
+  display: block;          /* чтобы карточка-ссылка <a> вела себя как блок */
+  color: inherit;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Метка «Реальная работа» (отличается от «Демо») */
+.case-chip-live {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Ссылка-подпись под описанием реальной работы */
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
+}
+.case-link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--ease);
+}
+.case-card:hover .case-link svg {
+  transform: translate(2px, -2px);   /* стрелка слегка «вылетает» при наведении */
+}
+
+/* «Превью» кейса — градиентная заглушка вместо реального фото */
+.case-thumb {
+  position: relative;
+  height: 180px;
+  display: flex;
+  align-items: flex-start;
+}
+.case-chip {
+  margin: 14px;
+  background: rgba(255, 255, 255, .9);
+  color: var(--text);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+/* Разные градиенты для разных кейсов */
+.thumb-salon { background: linear-gradient(135deg, #f9a8d4, #c084fc); }
+.thumb-cafe  { background: linear-gradient(135deg, #fcd34d, #fb923c); }
+.thumb-bot   { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+.thumb-card  { background: linear-gradient(135deg, #6ee7b7, #10b981); }
+
+/* Градиенты демо-лендингов (локальные демо в папке /calkit) */
+.thumb-beauty   { background: linear-gradient(135deg, #f8c4d4, #c084fc); }
+.thumb-food     { background: linear-gradient(135deg, #ff8c42, #e23636); }
+.thumb-auto     { background: linear-gradient(135deg, #334155, #f59e0b); }
+.thumb-wood     { background: linear-gradient(135deg, #d8c2a8, #7c5638); }
+.thumb-ceiling  { background: linear-gradient(135deg, #93c5fd, #2563eb); }
+
+/* Крупная подпись-ниша поверх превью демо */
+.thumb-name {
+  position: absolute;
+  left: 0; right: 0; bottom: 16px;
+  text-align: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .28);
+  letter-spacing: .2px;
+}
+.case-chip-demo {
+  background: rgba(17, 24, 39, .82);
+  color: #fff;
+}
+
+.case-body { padding: 24px 26px 28px; }
+.case-body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.case-body p {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* =================================================================
+   КАК РАБОТАЕМ (ШАГИ)
+   ================================================================= */
+.steps {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 720px;
+  display: grid;
+  gap: 16px;
+}
+.step {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  transition: transform var(--ease), box-shadow var(--ease);
+}
+.step:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-lg);
+}
+.step-num {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 50%;
+}
+.step h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.step p {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+
+/* =================================================================
+   ФИНАЛЬНЫЙ CTA
+   ================================================================= */
+.cta-section { padding: 84px 0; }
+.cta-inner {
+  max-width: 720px;
+  text-align: center;
+  background: linear-gradient(135deg, #1e3a8a, var(--accent));
+  color: #fff;
+  border-radius: 24px;
+  padding: 56px 32px;
+  box-shadow: 0 20px 50px rgba(37, 99, 235, .3);
+}
+.cta-title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.cta-text {
+  font-size: 18px;
+  opacity: .92;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+/* На цветном фоне делаем кнопку белой */
+.cta-inner .btn-accent {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+}
+.cta-inner .btn-accent:hover { background: #f1f5ff; }
+
+/* =================================================================
+   ПОДВАЛ
+   ================================================================= */
+.site-footer {
+  background: var(--text);
+  color: #e4e4e7;
+  padding: 36px 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+}
+.footer-sub {
+  color: #a1a1aa;
+  font-size: 14px;
+}
+.footer-links { display: flex; gap: 18px; }
+.footer-links a {
+  color: #e4e4e7;
+  font-size: 15px;
+  transition: color var(--ease);
+}
+.footer-links a:hover { color: #fff; }
+
+/* =================================================================
+   АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ ПРОКРУТКЕ
+   ================================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* =================================================================
+   АДАПТИВ
+   ================================================================= */
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .nav { display: none; }          /* прячем меню на планшете/телефоне */
+}
+
+@media (max-width: 640px) {
+  .section { padding: 56px 0; }
+  .grid-3,
+  .grid-2 { grid-template-columns: 1fr; }
+  .hero { padding: 52px 0 44px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .header-cta { display: none; }   /* на маленьком экране CTA в шапке прячем */
+  .cta-inner { padding: 44px 22px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* Уважение к настройке «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; }
+}

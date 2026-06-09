@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ============================================================
+     SEO / META — меняйте под свой бизнес
+     ============================================================ -->
+<title>Ceiling Expert — натяжные потолки с бесплатным замером | Демо</title>
+<meta name="description" content="Ceiling Expert: матовые, глянцевые, теневые и парящие потолки. Бесплатный замер, монтаж от 1 дня, расчёт стоимости за 10 минут." />
+<meta name="theme-color" content="#FFFFFF" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ceiling Expert — натяжные потолки с бесплатным замером" />
+<meta property="og:description" content="Матовые, глянцевые, теневые и парящие потолки. Расчёт стоимости за 10 минут." />
+<meta property="og:image" content="../assets/og-ceilings.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563EB'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT: '#2563EB', dark: '#1D4ED8', soft: '#EFF5FF' }, // синий акцент
+          ink:   '#0F172A',   // тёмный текст
+          slate2:'#64748B',   // приглушённый
+          line:  '#E6ECF3',   // границы
+        },
+        fontFamily: { sans: ['Manrope', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+
+<style>
+  html{scroll-behavior:smooth}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  /* «До/после»: слой "после" обрезается по ширите слайдера */
+  .ba-wrap{position:relative;overflow:hidden;border-radius:1rem;aspect-ratio:4/3;cursor:ew-resize}
+  .ba-after{position:absolute;inset:0;width:50%;overflow:hidden;border-right:3px solid #fff}
+  .ba-after > div{width:100vw;max-width:none}
+  .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;transform:translateX(-50%);pointer-events:none}
+  .ba-handle::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 2px 10px rgba(0,0,0,.25)}
+  .ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+
+<body class="bg-white font-sans text-ink antialiased selection:bg-brand/20">
+
+<!-- ============================================================ ШАПКА ============================================================ -->
+<header class="fixed inset-x-0 top-0 z-50">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mt-4 flex items-center justify-between rounded-2xl border border-line bg-white/85 px-5 py-3 backdrop-blur-md" data-bar>
+      <!-- НАЗВАНИЕ КОМПАНИИ -->
+      <a href="#top" class="flex items-center gap-2 text-lg font-800 tracking-tight text-ink">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand text-white">C</span>
+        Ceiling<span class="text-brand">Expert</span>
+      </a>
+      <nav class="hidden items-center gap-7 text-sm font-medium text-slate2 md:flex">
+        <a href="#types" class="hover:text-ink">Виды</a>
+        <a href="#why" class="hover:text-ink">Почему мы</a>
+        <a href="#calc" class="hover:text-ink">Калькулятор</a>
+        <a href="#ba" class="hover:text-ink">До/после</a>
+        <a href="#faq" class="hover:text-ink">FAQ</a>
+      </nav>
+      <a href="#calc" class="rounded-xl bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark">Рассчитать</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================ 1. HERO ============================================================ -->
+<section id="top" class="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
+  <div class="pointer-events-none absolute -right-24 -top-10 h-[420px] w-[420px] rounded-full bg-brand-soft blur-3xl"></div>
+  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg> Замер — бесплатно
+      </span>
+      <h1 class="mt-6 text-5xl font-800 leading-[1.05] tracking-tight text-ink md:text-6xl">
+        Натяжные потолки с <span class="text-brand">бесплатным замером</span>
+      </h1>
+      <p class="mt-6 max-w-md text-lg text-slate2">
+        Матовые, глянцевые, теневые и парящие потолки. Расчёт стоимости за 10 минут.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#calc" class="rounded-xl bg-brand px-7 py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark">Вызвать замерщика</a>
+        <a href="#calc" class="rounded-xl border border-line bg-white px-7 py-4 text-base font-semibold text-ink transition hover:border-brand">Рассчитать потолок</a>
+      </div>
+      <div class="mt-10 grid max-w-md grid-cols-3 gap-4 text-center">
+        <div class="rounded-2xl bg-brand-soft p-4"><p class="text-2xl font-800 text-brand">1 день</p><p class="text-xs text-slate2">монтаж</p></div>
+        <div class="rounded-2xl bg-brand-soft p-4"><p class="text-2xl font-800 text-brand">0 ₽</p><p class="text-xs text-slate2">замер</p></div>
+        <div class="rounded-2xl bg-brand-soft p-4"><p class="text-2xl font-800 text-brand">Гарантия</p><p class="text-xs text-slate2">по договору</p></div>
+      </div>
+    </div>
+
+    <!-- визуальная «комната» на CSS -->
+    <div class="reveal">
+      <div class="relative aspect-square overflow-hidden rounded-3xl border border-line shadow-2xl">
+        <!-- глянцевый потолок -->
+        <div class="absolute inset-x-0 top-0 h-1/2" style="background:linear-gradient(180deg,#dbeafe,#f8fbff 70%)"></div>
+        <!-- встроенные светильники -->
+        <div class="absolute left-1/2 top-[18%] flex -translate-x-1/2 gap-10">
+          <span class="h-4 w-4 rounded-full bg-white shadow-[0_0_24px_8px_rgba(255,255,255,.9)]"></span>
+          <span class="h-4 w-4 rounded-full bg-white shadow-[0_0_24px_8px_rgba(255,255,255,.9)]"></span>
+          <span class="h-4 w-4 rounded-full bg-white shadow-[0_0_24px_8px_rgba(255,255,255,.9)]"></span>
+        </div>
+        <!-- стены/пол -->
+        <div class="absolute inset-x-0 bottom-0 h-1/2" style="background:linear-gradient(180deg,#eef2f7,#e2e8f0)"></div>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-2xl border border-line bg-white/90 px-5 py-3 text-center shadow-lg backdrop-blur">
+          <p class="text-xs text-slate2">Глянцевый потолок с подсветкой</p>
+          <p class="font-800 text-ink">Чисто. Ровно. Быстро.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2. ВИДЫ ПОТОЛКОВ ============================================================ -->
+<section id="types" class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="reveal mb-12 max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Виды</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">Какие потолки делаем</h2>
+    </div>
+    <!-- ВИДЫ: меняйте названия/описания. Цветной прямоугольник имитирует фактуру -->
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28" style="background:linear-gradient(120deg,#eef2f7,#dbe3ec)"></div>
+        <div class="p-6"><h3 class="text-xl font-700">Матовые</h3><p class="mt-1 text-sm text-slate2">Спокойная поверхность без бликов — как идеальная побелка.</p></div>
+      </div>
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28" style="background:linear-gradient(120deg,#cfe0f5,#eaf2fd 60%,#ffffff)"></div>
+        <div class="p-6"><h3 class="text-xl font-700">Глянцевые</h3><p class="mt-1 text-sm text-slate2">Зеркальный эффект, визуально поднимает потолок.</p></div>
+      </div>
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28" style="background:linear-gradient(120deg,#e6ebf2,#d3dbe6)"></div>
+        <div class="p-6"><h3 class="text-xl font-700">Сатиновые</h3><p class="mt-1 text-sm text-slate2">Лёгкое мягкое сияние — золотая середина.</p></div>
+      </div>
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28" style="background:linear-gradient(120deg,#1f2937,#374151)"></div>
+        <div class="p-6"><h3 class="text-xl font-700">Теневые</h3><p class="mt-1 text-sm text-slate2">Эффектный теневой зазор по периметру комнаты.</p></div>
+      </div>
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28 relative" style="background:linear-gradient(120deg,#eef2f7,#dbe3ec)"><div class="absolute inset-x-6 bottom-0 h-1.5 rounded-full bg-brand/60 blur-[2px]"></div></div>
+        <div class="p-6"><h3 class="text-xl font-700">Парящие</h3><p class="mt-1 text-sm text-slate2">Подсветка по контуру — эффект «летящего» потолка.</p></div>
+      </div>
+      <div class="reveal group overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="h-28 relative" style="background:linear-gradient(120deg,#cfe0f5,#ffffff)"><div class="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 gap-6"><span class="h-3 w-3 rounded-full bg-white shadow-[0_0_16px_6px_rgba(37,99,235,.5)]"></span><span class="h-3 w-3 rounded-full bg-white shadow-[0_0_16px_6px_rgba(37,99,235,.5)]"></span></div></div>
+        <div class="p-6"><h3 class="text-xl font-700">С подсветкой</h3><p class="mt-1 text-sm text-slate2">Светильники, ленты и сценарии освещения.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3. ПОЧЕМУ ВЫБИРАЮТ ============================================================ -->
+<section id="why" class="bg-brand-soft py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="reveal mb-12 max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Почему мы</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">5 причин доверять нам</h2>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div class="reveal rounded-2xl bg-white p-6"><div class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v6l9 4 9-4V7"/></svg></div><h3 class="mt-4 font-700">Замер бесплатно</h3><p class="mt-1 text-sm text-slate2">Приедем и всё измерим без оплаты.</p></div>
+      <div class="reveal rounded-2xl bg-white p-6"><div class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3 class="mt-4 font-700">Монтаж от 1 дня</h3><p class="mt-1 text-sm text-slate2">Большинство комнат — за один визит.</p></div>
+      <div class="reveal rounded-2xl bg-white p-6"><div class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><h3 class="mt-4 font-700">Без грязи</h3><p class="mt-1 text-sm text-slate2">Чистый монтаж, уберём за собой.</p></div>
+      <div class="reveal rounded-2xl bg-white p-6"><div class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg></div><h3 class="mt-4 font-700">Гарантия</h3><p class="mt-1 text-sm text-slate2">Отвечаем за материал и монтаж.</p></div>
+      <div class="reveal rounded-2xl bg-white p-6"><div class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></div><h3 class="mt-4 font-700">Договор</h3><p class="mt-1 text-sm text-slate2">Фиксируем цену и сроки документально.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4. КАЛЬКУЛЯТОР → WhatsApp ============================================================ -->
+<section id="calc" class="py-20 md:py-28">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="reveal overflow-hidden rounded-3xl border border-line shadow-xl">
+      <div class="grid md:grid-cols-5">
+        <div class="bg-brand p-8 text-white md:col-span-2">
+          <h2 class="text-3xl font-800">Калькулятор потолка</h2>
+          <p class="mt-3 text-sm text-white/80">Заполните поля — пришлём предварительную стоимость в мессенджер за 10 минут.</p>
+          <ul class="mt-6 space-y-2 text-sm font-medium">
+            <li>✓ Замер бесплатно</li><li>✓ Без обязательств</li><li>✓ Ответ сегодня</li>
+          </ul>
+        </div>
+        <!-- ФОРМА: данные уходят в WhatsApp (без backend) -->
+        <form id="ceilForm" class="space-y-4 p-8 md:col-span-3">
+          <div class="grid grid-cols-2 gap-4">
+            <div><label class="mb-1 block text-sm font-medium text-ink">Площадь, м²</label><input name="area" inputmode="numeric" required placeholder="18" class="w-full rounded-xl border border-line px-4 py-3 outline-none focus:border-brand"/></div>
+            <div><label class="mb-1 block text-sm font-medium text-ink">Светильников, шт</label><input name="lamps" inputmode="numeric" placeholder="4" class="w-full rounded-xl border border-line px-4 py-3 outline-none focus:border-brand"/></div>
+          </div>
+          <div>
+            <label class="mb-1 block text-sm font-medium text-ink">Тип потолка</label>
+            <select name="type" class="w-full rounded-xl border border-line bg-white px-4 py-3 outline-none focus:border-brand">
+              <option>Матовый</option><option>Глянцевый</option><option>Сатиновый</option><option>Теневой</option><option>Парящий</option><option>С подсветкой</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div><label class="mb-1 block text-sm font-medium text-ink">Город</label><input name="city" placeholder="Город" class="w-full rounded-xl border border-line px-4 py-3 outline-none focus:border-brand"/></div>
+            <div><label class="mb-1 block text-sm font-medium text-ink">Телефон</label><input name="phone" type="tel" required placeholder="+7 ___ ___" class="w-full rounded-xl border border-line px-4 py-3 outline-none focus:border-brand"/></div>
+          </div>
+          <button type="submit" class="w-full rounded-xl bg-brand py-4 text-base font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-dark">Рассчитать стоимость</button>
+          <p class="text-center text-xs text-slate2">Нажимая кнопку, вы открываете чат в WhatsApp с заполненной заявкой.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5. ЦЕНЫ «ОТ» ============================================================ -->
+<section class="bg-brand-soft py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="reveal mb-12 max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Цены</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">Стоимость «от»</h2>
+    </div>
+    <!-- ЦЕНЫ: меняйте значения -->
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="reveal rounded-2xl bg-white p-7"><p class="text-sm text-slate2">Матовый</p><p class="mt-2 text-3xl font-800 text-ink">от 450 <span class="text-brand">₽/м²</span></p></div>
+      <div class="reveal rounded-2xl bg-white p-7"><p class="text-sm text-slate2">Сатиновый</p><p class="mt-2 text-3xl font-800 text-ink">от 500 <span class="text-brand">₽/м²</span></p></div>
+      <div class="reveal rounded-2xl bg-white p-7"><p class="text-sm text-slate2">Парящий</p><p class="mt-2 text-3xl font-800 text-ink">от 900 <span class="text-brand">₽/м²</span></p></div>
+      <div class="reveal rounded-2xl bg-white p-7"><p class="text-sm text-slate2">Светильники</p><p class="mt-2 text-3xl font-800 text-ink">от 300 <span class="text-brand">₽/шт</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6. ДО / ПОСЛЕ (интерактивно, на CSS) ============================================================ -->
+<section id="ba" class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="reveal mb-12 max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Результат</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">До и после</h2>
+      <p class="mt-3 text-slate2">Потяните ползунок, чтобы сравнить. Иллюстрации — демонстрационные, без реальных фото.</p>
+    </div>
+    <!-- ДО/ПОСЛЕ: 4 карточки. «До» — серый старый потолок, «После» — чистый натяжной -->
+    <div class="grid gap-6 sm:grid-cols-2" data-ba-grid>
+      <!-- 1 -->
+      <figure class="reveal">
+        <div class="ba-wrap">
+          <!-- ДО -->
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,#b8b2a8,#d8d3c8 55%,#cfcabf)"><div class="absolute left-6 top-6 h-10 w-24 rounded bg-black/10"></div><div class="absolute right-8 top-10 h-1 w-28 bg-black/15"></div></div>
+          <!-- ПОСЛЕ -->
+          <div class="ba-after"><div class="h-full" style="background:linear-gradient(180deg,#eaf2fd,#ffffff 60%,#eef2f7)"><div class="absolute left-1/2 top-8 flex -translate-x-1/2 gap-8"><span class="h-3 w-3 rounded-full bg-white shadow-[0_0_18px_7px_rgba(255,255,255,.95)]"></span><span class="h-3 w-3 rounded-full bg-white shadow-[0_0_18px_7px_rgba(255,255,255,.95)]"></span></div></div></div>
+          <div class="ba-handle"></div>
+          <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Сравнить до и после" />
+          <span class="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">До</span>
+          <span class="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">После</span>
+        </div>
+        <figcaption class="mt-3 font-600 text-ink">Гостиная · глянцевый с подсветкой</figcaption>
+      </figure>
+      <!-- 2 -->
+      <figure class="reveal">
+        <div class="ba-wrap">
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,#c2bdb3,#ddd8cd 55%,#d2cdc2)"><div class="absolute right-6 top-8 h-8 w-20 rounded bg-black/10"></div></div>
+          <div class="ba-after"><div class="h-full" style="background:linear-gradient(180deg,#f4f7fb,#ffffff)"></div></div>
+          <div class="ba-handle"></div>
+          <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Сравнить до и после" />
+          <span class="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">До</span>
+          <span class="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">После</span>
+        </div>
+        <figcaption class="mt-3 font-600 text-ink">Спальня · матовый белый</figcaption>
+      </figure>
+      <!-- 3 -->
+      <figure class="reveal">
+        <div class="ba-wrap">
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,#b5afa5,#d4cfc4)"><div class="absolute left-8 top-10 h-1 w-32 bg-black/15"></div></div>
+          <div class="ba-after"><div class="h-full relative" style="background:linear-gradient(180deg,#eef2f7,#ffffff)"><div class="absolute inset-x-8 bottom-6 h-1.5 rounded-full bg-brand/60 blur-[2px]"></div></div></div>
+          <div class="ba-handle"></div>
+          <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Сравнить до и после" />
+          <span class="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">До</span>
+          <span class="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">После</span>
+        </div>
+        <figcaption class="mt-3 font-600 text-ink">Кухня · парящий контур</figcaption>
+      </figure>
+      <!-- 4 -->
+      <figure class="reveal">
+        <div class="ba-wrap">
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,#bdb8ae,#dad5ca)"><div class="absolute right-10 top-6 h-9 w-24 rounded bg-black/10"></div></div>
+          <div class="ba-after"><div class="h-full" style="background:linear-gradient(180deg,#1f2937,#374151)"><div class="absolute inset-4 rounded-lg border border-white/10"></div></div></div>
+          <div class="ba-handle"></div>
+          <input type="range" min="0" max="100" value="50" class="ba-range" aria-label="Сравнить до и после" />
+          <span class="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white">До</span>
+          <span class="absolute right-3 top-3 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">После</span>
+        </div>
+        <figcaption class="mt-3 font-600 text-ink">Прихожая · теневой зазор</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 7. ЭТАПЫ ============================================================ -->
+<section class="bg-brand-soft py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="reveal mb-12 max-w-xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Этапы</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">Как мы работаем</h2>
+    </div>
+    <div class="grid gap-4 md:grid-cols-5">
+      <div class="reveal rounded-2xl bg-white p-6 text-center"><div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand font-800 text-white">1</div><h3 class="mt-4 font-700">Заявка</h3><p class="mt-1 text-sm text-slate2">Оставляете заявку</p></div>
+      <div class="reveal rounded-2xl bg-white p-6 text-center"><div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand font-800 text-white">2</div><h3 class="mt-4 font-700">Замер</h3><p class="mt-1 text-sm text-slate2">Бесплатно на месте</p></div>
+      <div class="reveal rounded-2xl bg-white p-6 text-center"><div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand font-800 text-white">3</div><h3 class="mt-4 font-700">Расчёт</h3><p class="mt-1 text-sm text-slate2">Фиксируем цену</p></div>
+      <div class="reveal rounded-2xl bg-white p-6 text-center"><div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand font-800 text-white">4</div><h3 class="mt-4 font-700">Монтаж</h3><p class="mt-1 text-sm text-slate2">От 1 дня, без грязи</p></div>
+      <div class="reveal rounded-2xl bg-white p-6 text-center"><div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-brand font-800 text-white">5</div><h3 class="mt-4 font-700">Гарантия</h3><p class="mt-1 text-sm text-slate2">Договор и сервис</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 8. FAQ ============================================================ -->
+<section id="faq" class="py-20 md:py-28">
+  <div class="mx-auto max-w-3xl px-4">
+    <div class="reveal mb-10 text-center">
+      <p class="text-sm font-bold uppercase tracking-widest text-brand">Вопросы</p>
+      <h2 class="mt-2 text-4xl font-800 tracking-tight text-ink md:text-5xl">Частые вопросы</h2>
+    </div>
+    <div class="space-y-3" data-faq>
+      <div class="reveal rounded-2xl border border-line">
+        <button class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-600 text-ink" aria-expanded="false">Сколько длится монтаж?<svg class="h-5 w-5 shrink-0 text-brand transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="grid grid-rows-[0fr] transition-all duration-300"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-slate2">Стандартная комната — несколько часов, чаще всё готово за один день.</p></div></div>
+      </div>
+      <div class="reveal rounded-2xl border border-line">
+        <button class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-600 text-ink" aria-expanded="false">Будет ли грязь?<svg class="h-5 w-5 shrink-0 text-brand transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="grid grid-rows-[0fr] transition-all duration-300"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-slate2">Монтаж чистый, пыли почти нет. После работы убираем за собой.</p></div></div>
+      </div>
+      <div class="reveal rounded-2xl border border-line">
+        <button class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-600 text-ink" aria-expanded="false">Можно ли сделать подсветку?<svg class="h-5 w-5 shrink-0 text-brand transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="grid grid-rows-[0fr] transition-all duration-300"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-slate2">Да: точечные светильники, LED-ленты, парящий контур и световые линии.</p></div></div>
+      </div>
+      <div class="reveal rounded-2xl border border-line">
+        <button class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-600 text-ink" aria-expanded="false">Когда нужен замер?<svg class="h-5 w-5 shrink-0 text-brand transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="grid grid-rows-[0fr] transition-all duration-300"><div class="overflow-hidden"><p class="px-6 pb-5 text-sm text-slate2">Замер нужен перед монтажом, когда стены готовы. Он бесплатный и ни к чему не обязывает.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 9. ФИНАЛЬНЫЙ CTA ============================================================ -->
+<section class="pb-24">
+  <div class="mx-auto max-w-5xl px-4">
+    <div class="reveal rounded-[32px] bg-brand p-10 text-center text-white md:p-16">
+      <h2 class="text-4xl font-800 md:text-5xl">Оставьте заявку — рассчитаем стоимость сегодня</h2>
+      <p class="mx-auto mt-4 max-w-xl text-white/80">Бесплатный замер и честная цена по договору. Монтаж — от одного дня.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="https://t.me/your_username" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-white px-7 py-4 font-semibold text-brand transition hover:bg-white/90">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.66L18.9 19c-.23 1-.83 1.25-1.68.78l-4.65-3.43-2.24 2.16c-.25.25-.46.46-.93.46l.33-4.72L18.4 6.1c.37-.33-.08-.51-.58-.18L6.2 13.18l-4.6-1.44c-1-.31-1.02-1 .21-1.48L20.66 3.2c.83-.31 1.56.2 1.28 1.46z"/></svg>
+          Написать в Telegram
+        </a>
+        <a href="https://wa.me/79990000000" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-4 font-semibold text-white transition hover:brightness-110">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.74.94-.9 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.03 2.76 1.17 2.96.15.2 2.03 3.1 4.92 4.35.69.3 1.22.47 1.64.6.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 00-8.6 15.06L2 22l5.06-1.33A10 10 0 1012 2z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ПОДВАЛ ============================================================ -->
+<footer class="border-t border-line py-10">
+  <div class="mx-auto max-w-6xl px-4 text-center">
+    <div class="flex items-center justify-center gap-2 text-lg font-800 text-ink"><span class="grid h-8 w-8 place-items-center rounded-lg bg-brand text-white">C</span>Ceiling<span class="text-brand">Expert</span></div>
+    <p class="mt-3 text-sm text-slate2">Натяжные потолки · бесплатный замер · монтаж от 1 дня</p>
+    <p class="mt-4 text-xs text-slate2/70">Демо-сайт. Не является сайтом реальной компании.</p>
+  </div>
+</footer>
+
+<!-- ЛИПКАЯ КНОПКА «НАПИСАТЬ» -->
+<a href="https://t.me/your_username" target="_blank" rel="noopener"
+   class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3.5 font-semibold text-white shadow-xl shadow-brand/30 transition hover:bg-brand-dark">
+  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.66L18.9 19c-.23 1-.83 1.25-1.68.78l-4.65-3.43-2.24 2.16c-.25.25-.46.46-.93.46l.33-4.72L18.4 6.1c.37-.33-.08-.51-.58-.18L6.2 13.18l-4.6-1.44c-1-.31-1.02-1 .21-1.48L20.66 3.2c.83-.31 1.56.2 1.28 1.46z"/></svg>
+  Написать
+</a>
+
+<script>
+  // 1) Появление блоков
+  const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // 2) Тень навбара
+  const bar = document.querySelector('[data-bar]');
+  addEventListener('scroll', () => bar.classList.toggle('shadow-lg', scrollY > 10), { passive: true });
+
+  // 3) Аккордеон FAQ
+  document.querySelectorAll('[data-faq] > div').forEach(item => {
+    const btn = item.querySelector('button'), panel = item.querySelector('.grid'), icon = item.querySelector('svg');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      panel.style.gridTemplateRows = open ? '0fr' : '1fr';
+      icon.style.transform = open ? '' : 'rotate(180deg)';
+    });
+  });
+
+  // 4) Слайдеры «до/после»
+  document.querySelectorAll('.ba-wrap').forEach(wrap => {
+    const after = wrap.querySelector('.ba-after');
+    const handle = wrap.querySelector('.ba-handle');
+    const range = wrap.querySelector('.ba-range');
+    const sync = v => { after.style.width = v + '%'; handle.style.left = v + '%'; };
+    range.addEventListener('input', e => sync(e.target.value));
+    sync(range.value);
+  });
+
+  // 5) Калькулятор → WhatsApp с заполненной заявкой
+  const WHATSAPP = 'https://wa.me/79990000000'; // ← замените номер
+  document.getElementById('ceilForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const text =
+      'Заявка на расчёт потолка (Ceiling Expert)\n' +
+      'Площадь: ' + f.area.value + ' м²\n' +
+      'Тип: ' + f.type.value + '\n' +
+      'Светильников: ' + (f.lamps.value || '—') + '\n' +
+      'Город: ' + (f.city.value || '—') + '\n' +
+      'Телефон: ' + f.phone.value;
+    window.open(WHATSAPP + '?text=' + encodeURIComponent(text), '_blank');
+  });
+</script>
+</body>
+</html>

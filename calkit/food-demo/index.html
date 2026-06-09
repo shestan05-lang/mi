@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Доставка еды в Пятигорске — быстрый заказ</title>
+<meta name="description" content="Шаурма, пицца, шашлык и горячие блюда с быстрым заказом в WhatsApp и Telegram." />
+
+<!-- Шрифты: выразительная пара Bricolage Grotesque + Manrope -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* =====================================================================
+   ПАЛИТРА И ТОКЕНЫ БРЕНДА — меняйте цвета здесь
+   ===================================================================== */
+:root{
+  --bg:        #120D0B;   /* основной тёмный фон */
+  --bg-2:      #1A1210;   /* фон секций / карточек */
+  --surface:   #211714;   /* приподнятые поверхности */
+  --line:      #34241F;   /* границы */
+  --text:      #FBEFE9;   /* основной текст */
+  --muted:     #B59C92;   /* приглушённый текст */
+  --orange:    #FF6A1A;   /* основной оранжевый акцент */
+  --orange-2:  #FF8C42;   /* светлее для градиентов */
+  --red:       #E23636;   /* красный акцент */
+  --amber:     #FFB347;   /* тёплый жёлтый */
+  --whatsapp:  #25D366;
+  --telegram:  #2AABEE;
+
+  --r:         24px;
+  --r-lg:      32px;
+  --sh:        0 30px 70px rgba(0,0,0,.5);
+  --glow:      0 18px 50px rgba(255,106,26,.35);
+  --maxw:      1200px;
+  --ease:      cubic-bezier(.22,.61,.36,1);
+}
+
+/* ===== База ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Bricolage Grotesque','Manrope',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-.02em}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+section{padding:clamp(60px,8vw,110px) 0;position:relative}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--orange);
+  background:rgba(255,106,26,.1);border:1px solid rgba(255,106,26,.25);
+  padding:7px 15px;border-radius:999px;
+}
+.eyebrow svg{width:14px;height:14px}
+
+/* ===== Кнопки ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;
+  padding:16px 28px;border-radius:999px;border:none;cursor:pointer;min-height:54px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s,filter .25s;
+}
+.btn svg{width:20px;height:20px;flex:none}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(-1px)}
+.btn-whatsapp{background:var(--whatsapp);color:#08130b;box-shadow:0 12px 30px rgba(37,211,102,.32)}
+.btn-telegram{background:var(--telegram);color:#04121c;box-shadow:0 12px 30px rgba(42,171,238,.32)}
+.btn-primary{background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;box-shadow:var(--glow)}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--orange)}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:4px;border-radius:8px}
+
+/* =====================================================================
+   ШАПКА
+   ===================================================================== */
+.header{position:fixed;inset:0 0 auto 0;z-index:100;padding:20px 0;transition:all .4s var(--ease)}
+.header.scrolled{background:rgba(18,13,11,.8);backdrop-filter:blur(14px) saturate(140%);box-shadow:0 1px 0 var(--line);padding:12px 0}
+.header .container{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.logo .mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--orange),var(--red));display:grid;place-items:center;box-shadow:var(--glow)}
+.logo .mark svg{width:20px;height:20px;color:#fff}
+.nav-links{display:none;gap:32px}
+.nav-links a{font-size:14px;font-weight:600;color:var(--muted);transition:color .25s}
+.nav-links a:hover{color:var(--text)}
+.header .btn{padding:11px 22px;min-height:46px;font-size:14px}
+.header-cta{display:none}
+@media(min-width:800px){.nav-links{display:flex}}
+@media(min-width:560px){.header-cta{display:inline-flex}}
+
+/* =====================================================================
+   1. ПЕРВЫЙ ЭКРАН (HERO)
+   ===================================================================== */
+.hero{padding:140px 0 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,106,26,.30),transparent 65%);top:-200px;right:-160px;filter:blur(20px);z-index:0}
+.hero::after{content:"";position:absolute;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,54,54,.20),transparent 65%);bottom:-220px;left:-140px;filter:blur(20px);z-index:0}
+.hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:46px;align-items:center}
+@media(min-width:960px){.hero .container{grid-template-columns:1.1fr .9fr;gap:54px}}
+
+.hero-copy .eyebrow{margin-bottom:22px}
+.hero-copy h1{font-size:clamp(44px,8.5vw,82px);margin-bottom:20px}
+.hero-copy h1 em{font-style:normal;background:linear-gradient(120deg,var(--orange),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy .sub{font-size:clamp(16px,2.3vw,20px);color:var(--muted);max-width:500px;margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+.hero-meta{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.hero-meta .m b{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;display:block;background:linear-gradient(120deg,var(--orange),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-meta .m span{font-size:13px;color:var(--muted)}
+
+/* визуал героя */
+.hero-visual{position:relative}
+.hero-dish{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:1/1;box-shadow:var(--sh);border:1px solid var(--line)}
+.hero-dish img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.hero-dish:hover img{transform:scale(1.06)}
+.hero-dish::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(18,13,11,.55))}
+.price-tag{
+  position:absolute;right:-10px;top:26px;z-index:2;
+  background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;
+  padding:14px 20px;border-radius:18px;box-shadow:var(--glow);text-align:center;
+  animation:floaty 5s ease-in-out infinite;
+}
+.price-tag small{display:block;font-size:11px;opacity:.85;letter-spacing:.5px}
+.price-tag b{font-family:'Bricolage Grotesque',sans-serif;font-size:26px}
+.delivery-chip{
+  position:absolute;left:-12px;bottom:26px;z-index:2;display:flex;align-items:center;gap:12px;
+  background:rgba(33,23,20,.92);backdrop-filter:blur(10px);border:1px solid var(--line);
+  border-radius:16px;padding:14px 18px;box-shadow:var(--sh);
+}
+.delivery-chip .ic{width:40px;height:40px;border-radius:12px;background:rgba(255,106,26,.16);display:grid;place-items:center;color:var(--orange)}
+.delivery-chip .ic svg{width:22px;height:22px}
+.delivery-chip b{font-size:15px;display:block}
+.delivery-chip small{font-size:12px;color:var(--muted)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* =====================================================================
+   ЗАГОЛОВКИ СЕКЦИЙ
+   ===================================================================== */
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(34px,5vw,54px);flex-wrap:wrap}
+.section-head .ttl .eyebrow{margin-bottom:16px}
+.section-head h2{font-size:clamp(32px,5.5vw,54px)}
+.section-head p{color:var(--muted);max-width:420px;margin-top:8px}
+
+/* =====================================================================
+   2. ПОПУЛЯРНОЕ МЕНЮ — крупные карточки блюд
+   ===================================================================== */
+.menu-grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:560px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.menu-grid{grid-template-columns:repeat(4,1fr)}}
+
+.dish{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s;
+}
+.dish:hover{transform:translateY(-7px);box-shadow:var(--sh);border-color:rgba(255,106,26,.4)}
+.dish-img{position:relative;aspect-ratio:4/3;overflow:hidden}
+.dish-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.dish:hover .dish-img img{transform:scale(1.09)}
+.dish-img .tag{position:absolute;top:12px;left:12px;background:rgba(18,13,11,.7);backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:var(--amber);font-size:11px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;padding:6px 11px;border-radius:999px}
+.dish-body{padding:20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.dish-body h3{font-size:21px}
+.dish-body p{font-size:13.5px;color:var(--muted);flex:1}
+.dish-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:12px}
+.dish-price{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:700}
+.dish-price small{font-size:13px;color:var(--muted);font-weight:500}
+.dish-order{
+  width:46px;height:46px;border-radius:14px;flex:none;cursor:pointer;border:none;
+  background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;
+  display:grid;place-items:center;transition:transform .3s var(--ease),filter .25s;
+}
+.dish-order svg{width:22px;height:22px}
+.dish-order:hover{transform:scale(1.08);filter:brightness(1.08)}
+
+/* =====================================================================
+   3. АКЦИИ — bento-сетка
+   ===================================================================== */
+.promo{background:var(--bg-2)}
+.promo-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:760px){.promo-grid{grid-template-columns:1.4fr 1fr;grid-auto-rows:1fr}}
+.promo-card{
+  position:relative;border-radius:var(--r-lg);padding:34px;overflow:hidden;border:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:space-between;min-height:200px;
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.promo-card:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.promo-card .badge{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:6px 13px;border-radius:999px;background:rgba(0,0,0,.25);margin-bottom:14px}
+.promo-card h3{font-size:30px;margin-bottom:6px}
+.promo-card p{font-size:14.5px;opacity:.92}
+.promo-card .big{font-family:'Bricolage Grotesque',sans-serif;font-size:54px;line-height:1;margin-top:14px}
+/* большая карточка */
+.promo-hero{grid-row:span 2;color:#fff;background:linear-gradient(140deg,#FF6A1A,#E23636 90%)}
+.promo-hero::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.14);right:-100px;bottom:-120px}
+.promo-sm{background:var(--surface);color:var(--text)}
+.promo-sm .badge{background:rgba(255,106,26,.15);color:var(--orange)}
+.promo-sm .big{background:linear-gradient(120deg,var(--orange),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* =====================================================================
+   4. КАК ЗАКАЗАТЬ — шаги
+   ===================================================================== */
+.steps-grid{display:grid;grid-template-columns:1fr;gap:20px;counter-reset:step}
+@media(min-width:760px){.steps-grid{grid-template-columns:repeat(3,1fr)}}
+.step{
+  position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:38px 28px 30px;transition:transform .4s var(--ease),border-color .4s}
+.step:hover{transform:translateY(-5px);border-color:rgba(255,106,26,.4)}
+.step .n{
+  font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;width:46px;height:46px;
+  border-radius:14px;display:grid;place-items:center;margin-bottom:20px;
+  background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;box-shadow:var(--glow)}
+.step .ic{position:absolute;top:34px;right:28px;color:var(--line)}
+.step .ic svg{width:34px;height:34px}
+.step h3{font-size:22px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:14.5px}
+
+/* =====================================================================
+   5. КОНТАКТЫ
+   ===================================================================== */
+.contacts-card{
+  position:relative;overflow:hidden;border-radius:var(--r-lg);
+  background:linear-gradient(150deg,var(--surface),var(--bg-2));border:1px solid var(--line);
+  padding:clamp(40px,6vw,72px) clamp(26px,5vw,60px);text-align:center;box-shadow:var(--sh)}
+.contacts-card::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,106,26,.28),transparent 65%);top:-160px;left:50%;transform:translateX(-50%);filter:blur(10px)}
+.contacts-card>*{position:relative}
+.contacts-card .eyebrow{margin-bottom:18px}
+.contacts-card h2{font-size:clamp(32px,5vw,50px)}
+.contacts-card .city{display:inline-flex;align-items:center;gap:9px;margin-top:16px;font-size:18px;font-weight:600}
+.contacts-card .city svg{width:20px;height:20px;color:var(--orange)}
+.contacts-card .hours{color:var(--muted);margin-top:6px}
+.contacts-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:32px}
+.demo-note{margin-top:30px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:22px}
+
+/* ===== Подвал ===== */
+.footer{padding:38px 0;text-align:center;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line)}
+.footer .logo{justify-content:center;margin-bottom:12px;font-size:20px}
+
+/* ===== Scroll-анимации ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ ШАПКА ============ -->
+<header class="header" id="header">
+  <div class="container">
+    <!-- НАЗВАНИЕ: замените текст -->
+    <div class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16M8 4v6a3 3 0 01-3 3M8 4v16M16 4c-1.5 0-3 1.5-3 5s1.5 5 3 5v6"/></svg></span>
+      ВкусБокс
+    </div>
+    <nav class="nav-links">
+      <a href="#menu">Меню</a>
+      <a href="#promo">Акции</a>
+      <a href="#how">Как заказать</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <!-- ССЫЛКА WHATSAPP: вставьте https://wa.me/79280000000 -->
+    <a class="btn btn-primary header-cta" href="#">Заказать</a>
+  </div>
+</header>
+
+<!-- ============ 1. ПЕРВЫЙ ЭКРАН ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Доставка 30–40 минут
+      </span>
+      <h1>Доставка еды<br><em>в Пятигорске</em></h1>
+      <p class="sub">Шаурма, пицца, шашлык и горячие блюда с быстрым заказом</p>
+      <div class="hero-actions">
+        <!-- ССЫЛКА WHATSAPP: вставьте https://wa.me/79280000000 -->
+        <a class="btn btn-whatsapp" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.74.94-.9 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.03 2.76 1.17 2.96.15.2 2.03 3.1 4.92 4.35.69.3 1.22.47 1.64.6.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 00-8.6 15.06L2 22l5.06-1.33A10 10 0 1012 2z"/></svg>
+          Заказать в WhatsApp
+        </a>
+        <!-- ССЫЛКА TELEGRAM: вставьте https://t.me/username -->
+        <a class="btn btn-telegram" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.66L18.9 19c-.23 1-.83 1.25-1.68.78l-4.65-3.43-2.24 2.16c-.25.25-.46.46-.93.46l.33-4.72L18.4 6.1c.37-.33-.08-.51-.58-.18L6.2 13.18l-4.6-1.44c-1-.31-1.02-1 .21-1.48L20.66 3.2c.83-.31 1.56.2 1.28 1.46z"/></svg>
+          Написать в Telegram
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="m"><b>30 мин</b><span>средняя доставка</span></div>
+        <div class="m"><b>от 1500 ₽</b><span>бесплатно</span></div>
+        <div class="m"><b>4.9★</b><span>оценка гостей</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="hero-dish">
+        <!-- ФОТО ГЕРОЯ: замените URL на фото своего блюда -->
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80" alt="Аппетитное блюдо" loading="eager" />
+      </div>
+      <div class="price-tag"><small>от</small><b>199 ₽</b></div>
+      <div class="delivery-chip">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+        <div><b>Быстрая доставка</b><small>по всему Пятигорску</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. ПОПУЛЯРНОЕ МЕНЮ ============ -->
+<!-- МЕНЮ: меняйте название, описание, цену и фото (src) у каждой карточки -->
+<section id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="ttl">
+        <span class="eyebrow">Хиты продаж</span>
+        <h2>Популярное меню</h2>
+      </div>
+      <p>Самые заказываемые блюда — готовим из свежих продуктов каждый день</p>
+    </div>
+    <div class="menu-grid">
+
+      <article class="dish reveal">
+        <div class="dish-img">
+          <img src="https://images.unsplash.com/photo-1530469912745-a215c6b256ea?auto=format&fit=crop&w=700&q=80" alt="Шаурма классическая" loading="lazy" />
+          <span class="tag">Хит</span>
+        </div>
+        <div class="dish-body">
+          <h3>Шаурма классическая</h3>
+          <p>Сочное мясо, свежие овощи и фирменный соус в тёплой лепёшке.</p>
+          <div class="dish-foot">
+            <div class="dish-price">199 <small>₽</small></div>
+            <!-- КНОПКА ЗАКАЗА: ведёт на # -->
+            <button class="dish-order" aria-label="Заказать шаурму"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish reveal">
+        <div class="dish-img">
+          <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=80" alt="Пицца пепперони" loading="lazy" />
+          <span class="tag">Острая</span>
+        </div>
+        <div class="dish-body">
+          <h3>Пицца пепперони</h3>
+          <p>Тонкое тесто, томатный соус, моцарелла и пикантная пепперони.</p>
+          <div class="dish-foot">
+            <div class="dish-price">549 <small>₽</small></div>
+            <button class="dish-order" aria-label="Заказать пиццу"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish reveal">
+        <div class="dish-img">
+          <img src="https://images.unsplash.com/photo-1633237308525-cd587cf71926?auto=format&fit=crop&w=700&q=80" alt="Шашлык из курицы" loading="lazy" />
+          <span class="tag">На углях</span>
+        </div>
+        <div class="dish-body">
+          <h3>Шашлык из курицы</h3>
+          <p>Маринованное куриное филе на углях с зеленью и луком.</p>
+          <div class="dish-foot">
+            <div class="dish-price">389 <small>₽</small></div>
+            <button class="dish-order" aria-label="Заказать шашлык"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish reveal">
+        <div class="dish-img">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80" alt="Комбо-набор" loading="lazy" />
+          <span class="tag">Выгодно</span>
+        </div>
+        <div class="dish-body">
+          <h3>Комбо-набор</h3>
+          <p>Бургер, картофель фри и напиток — полноценный обед в одном заказе.</p>
+          <div class="dish-foot">
+            <div class="dish-price">699 <small>₽</small></div>
+            <button class="dish-order" aria-label="Заказать комбо"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. АКЦИИ ============ -->
+<!-- АКЦИИ: меняйте текст бейджей, заголовков и крупные значения -->
+<section class="promo" id="promo">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="ttl">
+        <span class="eyebrow">Выгодно</span>
+        <h2>Акции и предложения</h2>
+      </div>
+      <p>Заказывайте больше — экономьте больше</p>
+    </div>
+    <div class="promo-grid">
+      <div class="promo-card promo-hero reveal">
+        <span class="badge">Каждый день</span>
+        <div>
+          <h3>Комбо дня</h3>
+          <p>Специальный набор по сниженной цене — меняем состав каждый день.</p>
+        </div>
+        <div class="big">−25%</div>
+      </div>
+      <div class="promo-card promo-sm reveal">
+        <span class="badge">Самовывоз</span>
+        <h3>Скидка на самовывоз</h3>
+        <p>Забирайте заказ сами и получайте приятную скидку.</p>
+        <div class="big">−15%</div>
+      </div>
+      <div class="promo-card promo-sm reveal">
+        <span class="badge">Доставка</span>
+        <h3>Бесплатная доставка</h3>
+        <p>При заказе на сумму от 1500 ₽ доставим бесплатно.</p>
+        <div class="big">0 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. КАК ЗАКАЗАТЬ ============ -->
+<section id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="ttl">
+        <span class="eyebrow">Просто</span>
+        <h2>Как заказать</h2>
+      </div>
+      <p>Три шага — и горячий заказ уже едет к вам</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="n">1</div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div>
+        <h3>Выберите блюдо</h3>
+        <p>Откройте меню и выберите то, что хочется прямо сейчас.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">2</div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3>Нажмите кнопку заказа</h3>
+        <p>Напишите нам в WhatsApp или Telegram — это займёт минуту.</p>
+      </div>
+      <div class="step reveal">
+        <div class="n">3</div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+        <h3>Получите подтверждение</h3>
+        <p>Мы подтвердим заказ и время доставки — остаётся только ждать.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. КОНТАКТЫ ============ -->
+<section id="contacts">
+  <div class="container">
+    <div class="contacts-card reveal">
+      <span class="eyebrow">Контакты</span>
+      <h2>Готовы сделать заказ?</h2>
+      <!-- ГОРОД/АДРЕС: замените на реальные данные -->
+      <div class="city">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        г. Пятигорск
+      </div>
+      <p class="hours">Ежедневно · 10:00 – 23:00</p>
+      <div class="contacts-actions">
+        <!-- ССЫЛКА WHATSAPP: вставьте https://wa.me/79280000000 -->
+        <a class="btn btn-whatsapp" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.84-2-.94-.26-.1-.46-.15-.65.15-.2.3-.74.94-.9 1.13-.17.2-.34.22-.63.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.34.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5h-.56c-.2 0-.5.07-.77.37-.26.3-1 .98-1 2.4 0 1.4 1.03 2.76 1.17 2.96.15.2 2.03 3.1 4.92 4.35.69.3 1.22.47 1.64.6.69.22 1.31.19 1.8.12.55-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.27-.2-.56-.34zM12 2a10 10 0 00-8.6 15.06L2 22l5.06-1.33A10 10 0 1012 2z"/></svg>
+          Заказать в WhatsApp
+        </a>
+        <!-- ССЫЛКА TELEGRAM: вставьте https://t.me/username -->
+        <a class="btn btn-telegram" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.66L18.9 19c-.23 1-.83 1.25-1.68.78l-4.65-3.43-2.24 2.16c-.25.25-.46.46-.93.46l.33-4.72L18.4 6.1c.37-.33-.08-.51-.58-.18L6.2 13.18l-4.6-1.44c-1-.31-1.02-1 .21-1.48L20.66 3.2c.83-.31 1.56.2 1.28 1.46z"/></svg>
+          Написать в Telegram
+        </a>
+      </div>
+      <p class="demo-note">Это демо-страница. Все блюда, цены и контакты можно заменить.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПОДВАЛ ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16M8 4v6a3 3 0 01-3 3M8 4v16M16 4c-1.5 0-3 1.5-3 5s1.5 5 3 5v6"/></svg></span>
+      ВкусБокс
+    </div>
+    © <span id="year"></span> Доставка еды в Пятигорске · демонстрационная страница
+  </div>
+</footer>
+
+<script>
+  // Год в подвале
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Тень/фон шапки при прокрутке
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Плавное появление блоков при прокрутке
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* =====================================================================
+     ПОДКЛЮЧЕНИЕ КНОПОК (когда появятся реальные контакты)
+     Раскомментируйте и впишите номер / username — все кнопки заработают,
+     включая кнопки «+» на карточках блюд.
+     ---------------------------------------------------------------------
+     const WHATSAPP = 'https://wa.me/79280000000';   // ваш номер
+     const TELEGRAM = 'https://t.me/username';        // ваш Telegram
+     document.querySelectorAll('.btn-whatsapp, .btn-primary').forEach(a => a.href = WHATSAPP);
+     document.querySelectorAll('.btn-telegram').forEach(a => a.href = TELEGRAM);
+     // карточки блюд -> открыть WhatsApp с названием блюда:
+     document.querySelectorAll('.dish').forEach(card => {
+       const name = card.querySelector('h3').textContent;
+       card.querySelector('.dish-order').addEventListener('click', () => {
+         window.open(WHATSAPP + '?text=' + encodeURIComponent('Здравствуйте! Хочу заказать: ' + name), '_blank');
+       });
+     });
+     ===================================================================== */
+</script>
+</body>
+</html>

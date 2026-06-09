@@ -85,10 +85,25 @@ function initReveal() {
 }
 
 /* -----------------------------------------------------------------
+   4) FAQ-аккордеон (раскрытие ответа по клику)
+   ----------------------------------------------------------------- */
+function initFaq() {
+  document.querySelectorAll('[data-faq] .faq-item').forEach(function (item) {
+    const btn = item.querySelector('.faq-q');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+}
+
+/* -----------------------------------------------------------------
    Запуск после загрузки DOM
    ----------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', function () {
   applyContacts();
   initSmoothScroll();
   initReveal();
+  initFaq();
 });

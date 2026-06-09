@@ -393,10 +393,43 @@ a:focus-visible {
 .case-card {
   padding: 0;
   overflow: hidden;
+  display: block;          /* чтобы карточка-ссылка <a> вела себя как блок */
+  color: inherit;
 }
 .case-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+}
+
+/* Метка «Реальная работа» (отличается от «Демо») */
+.case-chip-live {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Ссылка-подпись под описанием реальной работы */
+.case-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
+}
+.case-link svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--ease);
+}
+.case-card:hover .case-link svg {
+  transform: translate(2px, -2px);   /* стрелка слегка «вылетает» при наведении */
 }
 
 /* «Превью» кейса — градиентная заглушка вместо реального фото */

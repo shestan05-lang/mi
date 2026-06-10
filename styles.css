@@ -47,6 +47,7 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;            /* страховка от горизонтального сдвига */
 }
 
 h1, h2, h3 {
@@ -131,6 +132,22 @@ img { max-width: 100%; display: block; }
   color: var(--accent);
   transform: translateY(-2px);
 }
+
+/* Кнопка WhatsApp (фирменный зелёный) */
+.btn-whatsapp {
+  background: #25D366;
+  color: #08130b;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, .30);
+}
+.btn-whatsapp:hover {
+  background: #1ebe5a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, .4);
+}
+.btn-whatsapp svg { width: 19px; height: 19px; fill: currentColor; }
+
+/* Большие кнопки могут переноситься на узких экранах (без обрезки/overflow) */
+.btn-lg { white-space: normal; max-width: 100%; text-align: center; }
 
 /* Доступный фокус для клавиатуры */
 .btn:focus-visible,
@@ -564,7 +581,14 @@ a:focus-visible {
   max-width: 520px;
   margin: 0 auto 28px;
 }
-/* На цветном фоне делаем кнопку белой */
+/* Группа кнопок в финальном CTA */
+.cta-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* На цветном фоне делаем основную кнопку белой */
 .cta-inner .btn-accent {
   background: #fff;
   color: var(--accent);
@@ -765,6 +789,18 @@ a:focus-visible {
   box-shadow: 0 14px 34px rgba(37, 99, 235, .5);
 }
 
+/* Вторая плавающая кнопка — WhatsApp (стоит над Telegram) */
+.fab-wa {
+  bottom: 74px;
+  background: #25D366;
+  color: #08130b;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, .42);
+}
+.fab-wa:hover {
+  background: #1ebe5a;
+  box-shadow: 0 14px 34px rgba(37, 211, 102, .5);
+}
+
 /* =================================================================
    АДАПТИВ
    ================================================================= */
@@ -779,15 +815,17 @@ a:focus-visible {
   .grid-2 { grid-template-columns: 1fr; }
   .hero { padding: 52px 0 44px; }
   .hero-actions { flex-direction: column; }
-  .hero-actions .btn { width: 100%; }
+  .hero-actions .btn,
+  .cta-actions .btn { width: 100%; }
   .header-cta { display: none; }   /* на маленьком экране CTA в шапке прячем — связь даёт плавающая кнопка */
   .cta-inner { padding: 44px 22px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 
-  /* Плавающая кнопка компактнее и не перекрывает текст */
+  /* Плавающие кнопки компактнее и не перекрывают текст */
   .fab { right: 14px; bottom: 14px; padding: 12px 16px; font-size: 14px; }
+  .fab-wa { bottom: 66px; }
   .hero-offers li { font-size: 14px; padding: 8px 14px; }
-  .site-footer { padding-bottom: 84px; } /* запас под плавающую кнопку */
+  .site-footer { padding-bottom: 130px; } /* запас под две плавающие кнопки */
 }
 
 /* Уважение к настройке «уменьшить движение» */
